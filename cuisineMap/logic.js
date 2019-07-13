@@ -1,7 +1,7 @@
 // Create a map object
 var myMap = L.map("map", {
-  center: [15.5994, -28.6731],
-  zoom: 3
+  center: [32, -10],
+  zoom: 2
 });
 
 L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
@@ -14,54 +14,104 @@ L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
 // Country data
 var countries = [
   {
-    name: "Brazil",
+    name: "Brazilian",
     location: [-14.2350, -51.9253],
-    points: 227
+    points: 467
   },
   {
-    name: "Germany",
-    location: [51.1657, 10.4515],
-    points: 218
+    name: "British",
+    location: [55.3781, -3.4360],
+    points: 804
   },
   {
-    name: "Italy",
-    location: [41.8719, 12.5675],
-    points: 156
+    name: "Filipino",
+    location: [14.6760, 121.0437],
+    points: 755
   },
   {
-    name: "Argentina",
-    location: [-38.4161, -63.6167],
-    points: 140
-  },
-  {
-    name: "Spain",
+    name: "Spanish",
     location: [40.4637, -3.7492],
-    points: 99
+    points: 989
   },
   {
-    name: "England",
-    location: [52.355, 1.1743],
-    points: 98
+    name: "Jamacian",
+    location: [18.1096, -77.2975],
+    points: 526
   },
   {
-    name: "France",
+    name: "Thai",
+    location: [15.8700, 100.9925],
+    points: 1539
+  },
+  {
+    name: "French",
     location: [46.2276, 2.2137],
-    points: 96
+    points: 2646
   },
   {
-    name: "Netherlands",
-    location: [52.1326, 5.2913],
-    points: 93
+    name: "Chinese",
+    location: [35.8617, 104.1954],
+    points: 2673
   },
   {
-    name: "Uruguay",
-    location: [-32.4228, -55.7658],
-    points: 72
+    name: "Mexican",
+    location: [23.6345, -102.5528],
+    points: 6438
   },
   {
-    name: "Sweden",
-    location: [60.1282, 18.6435],
-    points: 61
+    name: "Korean",
+    location: [35.9078, 127.7669],
+    points: 830
+  },
+  {
+    name: "Japanese",
+    location: [36.2048, 138.2529],
+    points: 1423
+  },
+  {
+    name: "Indian",
+    location: [20.5937, 78.9629],
+    points: 3003
+  },
+  {
+    name: "Irish",
+    location: [53.1424, -7.6921],
+    points: 667
+  },
+  {
+    name: "Russian",
+    location: [61.5240, 105.3188],
+    points: 489
+  },
+  {
+    name: "Vietnamese",
+    location: [14.0583, 108.2772],
+    points: 825
+  },
+  {
+    name: "Moroccan",
+    location: [31.7917, -7.0926],
+    points: 821
+  },
+  {
+    name: "Cajun-Creole",
+    location: [29.9511, -90.0715],
+    points: 1546
+  },
+  {
+    name: "Southern US",
+    location: [32.0809, -81.0912],
+    points: 4320
+  },
+  {
+    name: "Greek",
+    location: [39.0742, 21.8243],
+    points: 1175
+  },
+  {
+    name: "Italian",
+    location: [41.8719, 12.5674],
+    points: 7838
   }
 ];
 
@@ -71,17 +121,20 @@ for (var i = 0; i < countries.length; i++) {
 
   // Conditionals for countries points
   var color = "";
-  if (countries[i].points > 200) {
-    color = "yellow";
+  if (countries[i].points > 4000) {
+    color = "cyan";
   }
-  else if (countries[i].points > 100) {
-    color = "blue";
+  else if (countries[i].points > 2000) {
+    color = "dodgerblue";
   }
-  else if (countries[i].points > 90) {
-    color = "green";
+  else if (countries[i].points > 1000) {
+    color = "rebeccapurple";
+  }
+  else if (countries[i].points > 500) {
+    color = "mediumslateblue";
   }
   else {
-    color = "red";
+    color = "slateblue";
   }
 
   // Add circles to map
@@ -90,6 +143,6 @@ for (var i = 0; i < countries.length; i++) {
     color: "white",
     fillColor: color,
     // Adjust radius
-    radius: countries[i].points * 1500
-  }).bindPopup("<h1>" + countries[i].name + "</h1> <hr> <h3>Points: " + countries[i].points + "</h3>").addTo(myMap);
+    radius: Math.sqrt(countries[i].points) * 11000
+  }).bindPopup("<h1>" + countries[i].name + "</h1> <hr> <h3>Count: " + countries[i].points + "</h3>").addTo(myMap);
 }
